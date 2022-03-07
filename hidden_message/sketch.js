@@ -1,53 +1,105 @@
 
-let message = "hello world"
+let message = "Hello"
 
 let font;
 function preload() {
   font = loadFont('./assets/yellowCandy.otf');
 }
 
-N = 100
-W = 800
-H = 400
-Z = 20
-shereRadius = 1
 
+const DISTANCE = 200;
+const SPHERE_RADIUS = 0.3; 
+let MAX_POINT_DIST;
+let cameraPoint; 
 
 let points = []
 
-function setup() {
-  createCanvas(800, 500, WEBGL);
-  points = font.textToPoints(message, 0,  0, 50, {
+const addRandomPoints = (messagePoints)=>{
+  // Add random points
+  let randomPoints = []
+  
+  for (let i=0;i<messagePoints.length*2;i++){
+    let u = random();
+    let x1 = randomGaussian()
+    let x2 = randomGaussian()
+    let x3 = randomGaussian()
+    let mag = Math.sqrt(x1*x1 + x2*x2 + x3*x3)
+    x1/=mag;
+    x2/=mag;
+    x3/=mag;
+
+    let c = Math.cbrt(u);
+    let vect = createVector(x1*c, x2*c, x3*c)
+    vect.mult(MAX_POINT_DIST)
+    randomPoints.push(vect)
+  }
+  return randomPoints.concat(messagePoints)
+}
+const generatePoints = () => {
+  let fontPoints = font.textToPoints(message, 0, 0, 100, {
     sampleFactor: 1,
     simplifyThreshold: 0
   });
-  let [maxX, maxY] = [0, 0];
-  points.forEach((point)=>{
-      maxX = max(point.x, maxX);
-      maxY = max(point.y, maxY)
+  // Translate the messsage
+  let [maxX, maxY] = [0,0];
+  fontPoints.forEach((pt)=>{
+    if (pt.x>maxX){
+      maxX = pt.x
+    }
+    if (pt.y>maxY){
+      maxY = pt.y
+    }
   })
-  console.log(maxX, maxY)
-  maxX/=2
-  maxY/=2
-  points.forEach((point)=>{
-      
-      point.x-=maxX
-      point.y-=maxY
-      ampli = 0.5 * (maxX - 0.9 * Math.abs(point.x))
-      point.z = random(2*ampli)-ampli;
-
-      point.x -=point.z*0.1;
-      //point.y /= 10;
+  fontPoints.forEach((pt)=>{
+    pt.x -= maxX/2;
+    pt.y -= maxY/2;
+  })
+  MAX_POINT_DIST = 1.3*((maxX/2)**2+ (maxY/2)**2)**0.5
+  return fontPoints.map((x)=>{
+    return createVector(x.x, x.y)
   })
   
+  
+
+}
+
+
+const project3D = (points2D) => {
+  points2D.forEach((pos) => {
+    let diff = p5.Vector.sub(cameraPoint, pos).normalize();
+    let randomModif = 0.7 * (random(2*MAX_POINT_DIST)-MAX_POINT_DIST);
+    diff.setMag(randomModif)
+    pos.add(diff)
+  })
+  return points2D
+}
+function setup() {
+  createCanvas(800, 500, WEBGL);
+  cameraPoint = createVector(0, 0, 400);
+  points3D = project3D(generatePoints())
+  points3D = addRandomPoints(points3D)
+
+  initRotateX = PI*random()
+  initRotateY = PI*random()
+  initRotateZ = 0.3*PI + random(0.7*PI)
+  
+
 }
 
 function draw() {
   background(200);
   orbitControl();
-  for (let x of points){
+  rotateX(initRotateX);
+  rotateY(initRotateY);
+  rotateZ(initRotateZ);
+  translate(cameraPoint.x, cameraPoint.y, cameraPoint.z);
+  sphere(SPHERE_RADIUS)
+  translate(-cameraPoint.x, -cameraPoint.y, -cameraPoint.z);
+  
+  
+  for (let x of points3D) {
     translate(x.x, x.y, x.z);
-    sphere(shereRadius)
+    sphere(SPHERE_RADIUS)
     translate(-x.x, -x.y, -x.z);
   }
 }
