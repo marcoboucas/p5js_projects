@@ -1,0 +1,62 @@
+<html>
+<head>
+  <title>Clock </title>
+  <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+
+
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+  <script language="javascript" type="text/javascript" src="particules.js"></script>
+  <script language="javascript" type="text/javascript" src="obstacles.js"></script>
+</head>
+<body>
+<div style='position:fixed;bottom:0px;left:0px'>
+<table>
+<tr>
+<td><label for='taille'>Taille des particules : </label></td>
+<td><input type="range" min='0' value='3' max='20' id='taille' onchange='taille=int(this.value);document.getElementById("taille_value").innerHTML=this.value'/></td>
+<td><p id='taille_value'>3</p></td>
+</tr>
+<tr>
+<td><label for='Vini'>Vitesse Initiale : </label></td>
+<td><input type="range" min='0'  max='10' value='5' id='Vini' oninput='Vini=int(this.value);document.getElementById("Vini_value").innerHTML=this.value'/></td>
+<td><p id='Vini_value'>5</p></td>
+</tr>
+<tr>
+<td><label for='Vmax'>Vitesse Maximale : </label></td>
+<td><input type="range" min='0'  max='30' value='15' id='Vmax' oninput='Vmax=int(this.value);document.getElementById("Vmax_value").innerHTML=this.value'/></td>
+<td><p id='Vmax_value'>5</p></td>
+</tr>
+<tr>
+<td><label for='nbr'>Nombre de particules : </label></td>
+<td><input type="range" min='0' max='1000' value='1' id='nbr' oninput='nbr=int(this.value);document.getElementById("nbr_value").innerHTML=this.value'/></td>
+<td><p id='nbr_value'>1</p></td>
+</tr>
+
+
+<tr>
+<td><label for='repulsMolX'>Répulsion entre Molécules /x : </label></td>
+<td><input type="range" min='-5' max='5' step='any' value='1' id='repulsMolX' oninput='repulsMolX=int(this.value*100)/100;document.getElementById("repulsMolX_value").innerHTML=this.value'/></td>
+<td><p id='repulsMolX_value'>1</p></td>
+</tr>
+<tr>
+<td><label for='repulsMolY'>Répulsion entre Molécules /y : </label></td>
+<td><input type="range" min='-5' max='5' step='any' value='1' id='repulsMolY' oninput='repulsMolY=int(this.value*100)/100;document.getElementById("repulsMolY_value").innerHTML=this.value'/></td>
+<td><p id='repulsMolY_value'>1</p></td>
+</tr>
+
+
+<tr>
+<td><label for='repulsObsX'>Répulsion des obstacles /x : </label></td>
+<td><input type="range" min='-5' max='5' step='any' value='1' id='repulsObsX' oninput='repulsObsX=int(this.value*100)/100;document.getElementById("repulsObsX_value").innerHTML=this.value'/></td>
+<td><p id='repulsObsX_value'>1</p></td>
+</tr>
+<tr>
+<td><label for='repulsObsY'>Répulsion entre Molécules /y : </label></td>
+<td><input type="range" min='-5' max='5' step='any' value='1' id='repulsObsY' oninput='repulsObsY=int(this.value*100)/100;document.getElementById("repulsObsY_value").innerHTML=this.value'/></td>
+<td><p id='repulsObsY_value'>1</p></td>
+</tr>
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+body{
+	margin:0px;
+	padding:0px;
+}
+#top{
+	user-select: none;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	height:20%;
+	/* background-image: url("top.png"); */
+	background-image: linear-gradient(white, transparent 80%);
+}
+#bottom{
+	user-select: none;
+	position:fixed;
+	bottom:0px;
+	left:0px;
+	right:0px;
+	height:20%;
+	/* background-image: url("top.png"); */
+	background-image: linear-gradient(transparent,white 80%);
+}
+#texte{
+	user-select: none;
+	position:fixed;
+	top:0px;
+	left:0px;
+	right:0px;
+	bottom:0px;
+	padding:10px;
+	overflow-y:scroll;
+	font-size:27px;
+}
+.search{
+	color:red;
+}
+[class~="mot"]{
+	color:green;
+}
+[class~="mot"]:hover{
+	color:red
+}
+	
+	

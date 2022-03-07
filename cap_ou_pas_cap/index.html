@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Cap ou pas Cap</title>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js" type="text/javascript"></script>
+    <script src="sketch.js" type="text/javascript"></script>
+    <script src="demarrage.js" type="text/javascript"></script>
+    <script src="gages.js" type="text/javascript"></script>
+    <style>
+      body{
+        padding:0px;
+        margin:0px;
+        width:100%;
+        height:100%;
+      }
+
+    </style>
+  </head>
+  <body>
+    <section id='Joueurs'>
+      <h1>Cap ou pas Cap ?</h1>
+
+      <article id='joueurs'>
+
+
+      </article>
+      <script>
+        Joueurs.push(new Joueur('Joueur1',[0,0,255]));
+        Joueurs.push(new Joueur('Joueur2',[255,0,0]));
+        Joueurs.push(new Joueur('Joueur3',[0,255,0]));
+        Joueurs.push(new Joueur('Joueur4',[100,100,100]));
+
+        Joueurs.push(new Joueur('Joueur5'));
+        Joueurs.push(new Joueur('Joueur6'));
+
+        affichage_joueurs()</script>
+    </section>
+    <style>
+    #Joueurs{
+      width:500px;
+      margin-left:-250px;
+      height:500px;
+      margin-top:-250px;
+      position:fixed;
+      left:50%;
+      top:50%;
+      background-color:rgb(0,120,80);
+    }
+    </style>
+    <section id='inGame' hidden='true'>
+        <button id='Tourner'style='margin-left:50%;' onclick="Tourner()">Tourner</button>
+        <p id='texte'></p>
+    </section>
+    <style>
+      #inGame{
+        background-color:red;
+        position:fixed;
+        bottom:10px;
+        width:100%;
+        height:100px;
+      }
+
+    </style>
+  </body>
+
+</html>

@@ -1,0 +1,28 @@
+<html>
+<head>
+  <title>Clock </title>
+  <script language="javascript" type="text/javascript" src="https://cdn.jsdelivr.net/npm/p5@1.4.1/lib/p5.min.js"></script>
+  <!-- uncomment lines below to include extra p5 libraries -->
+  <!--<script language="javascript" src="libraries/p5.sound.js"></script>-->
+
+
+  <script language="javascript" type="text/javascript" src="sketch.js"></script>
+  <script language="javascript" type="text/javascript" src="particules.js"></script>
+</head>
+<body>
+<div style='position:fixed;bottom:0px;left:0px'>
+<table>
+
+<tr>
+<td><label for='nbr'>Nombre de particules : </label></td>
+<td><input type="range" min='0' max='2000' value='1' id='nbr' oninput='nbr=int(this.value);document.getElementById("nbr_value").innerHTML=this.value'/></td>
+<td><p id='nbr_value'>1</p></td>
+</tr>
+<tr>
+  <td><input type='submit' onclick='reboot()'/></td>
+</tr>
+
+
+</div>
+</body>
+</html>
