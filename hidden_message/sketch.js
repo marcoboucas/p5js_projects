@@ -1,5 +1,5 @@
 
-let message = "Hello"
+let message = "Coucou"
 
 let font;
 function preload() {
@@ -53,6 +53,10 @@ const generatePoints = () => {
   fontPoints.forEach((pt)=>{
     pt.x -= maxX/2;
     pt.y -= maxY/2;
+    // Add random
+    pt.x +=randomGaussian()*0.5
+    pt.y +=randomGaussian()*0.5
+    pt.z += randomGaussian()*0.5
   })
   MAX_POINT_DIST = 1.3*((maxX/2)**2+ (maxY/2)**2)**0.5
   return fontPoints.map((x)=>{
